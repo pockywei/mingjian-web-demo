@@ -152,8 +152,8 @@ const slides = [
     id: 'architecture',
     title: "AI 企业落地技术架构图",
     component: () => (
-      <div className="w-full max-w-4xl mx-auto mt-4 flex flex-col items-center">
-        <p className="text-gray-500 mb-6 font-light">从基础设施到业务应用的全栈协同，建立全局观</p>
+      <div className="w-full max-w-4xl mx-auto mt-16 flex flex-col items-center">
+        <p className="text-gray-500 mb-10 font-light tracking-wide">从基础设施到业务应用的全栈协同，建立全局观</p>
         
         <div className="w-full relative flex flex-col items-center gap-3">
           
@@ -240,12 +240,12 @@ const slides = [
     id: 'comic-explanation',
     title: "一图看懂：招聘数字员工的全流程",
     component: () => (
-      <div className="w-full max-w-5xl mx-auto mt-4 flex flex-col items-center justify-center">
+      <div className="w-full max-w-5xl mx-auto mt-12 flex flex-col items-center justify-center">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-gray-200/60 bg-white"
+          className="relative w-full rounded-2xl overflow-hidden shadow-2xl shadow-gray-300/30 border border-gray-200/60 bg-white group hover:shadow-indigo-500/10 hover:border-indigo-200 transition-all duration-500"
         >
           {/* 装饰边框 */}
           <div className="absolute inset-0 border-4 border-white/40 pointer-events-none rounded-2xl z-10"></div>
