@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import comicImg from './assets/comic.png';
 import { 
   ChevronRight, ChevronLeft, 
   Sparkles, TrendingUp, Cpu, 
@@ -243,7 +244,7 @@ const slides = [
           <div className="absolute inset-0 border-4 border-white/40 pointer-events-none rounded-2xl z-10"></div>
           
           <img 
-            src="/comic.png" 
+            src={comicImg} 
             alt="招聘数字员工全流程漫画" 
             className="w-full h-auto object-contain block"
           />
