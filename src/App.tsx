@@ -132,9 +132,9 @@ const slides = [
             <h3 className="text-2xl font-medium text-gray-800">国内力量：场景落地王</h3>
           </div>
           {[
-            { name: "字节跳动", product: "豆包 / Trae", desc: "国内用户量最大的AI产品，生态丰富，Trae 为开发提效带来革命。" },
-            { name: "深度求索 (DeepSeek)", product: "DeepSeek-V3", desc: "国产开源之光，极致的性价比，模型能力直逼国际最顶尖水平。" },
-            { name: "月之暗面", product: "Kimi", desc: "主打超长文本处理，能一次性阅读百份财报和万字长文，备受白领喜爱。" }
+            { name: "字节跳动", product: "豆包 / Trae", desc: "拥有国内破亿的超大月活，应用生态最成熟，Trae 更是颠覆了开发者的工作流。" },
+            { name: "深度求索 (DeepSeek)", product: "DeepSeek-R1", desc: "打破算力霸权！算法优化极大降低了国产芯片的推理成本，确立了开源生态统治地位。" },
+            { name: "月之暗面", product: "Kimi Agent", desc: "商业化核爆！全面押注 Agent 生态，API 调用收入单月破千万美金，B 端自动化成核心。" }
           ].map((item, i) => (
             <div key={i} className="group bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-purple-200 hover:shadow-purple-500/5 transition-all duration-300 flex flex-col hover:-translate-y-1">
               <div className="flex justify-between items-center mb-2">
