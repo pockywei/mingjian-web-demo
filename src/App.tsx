@@ -107,9 +107,9 @@ const slides = [
             <h3 className="text-2xl font-medium text-gray-800">国际巨头：技术风向标</h3>
           </div>
           {[
-            { name: "OpenAI", product: "ChatGPT / Sora", desc: "行业绝对的领头羊，逻辑推理能力最强，Sora 更是颠覆了视频生成。" },
-            { name: "Anthropic", product: "Claude 3.5", desc: "文本处理极其细腻，编程能力出众，企业级安全性高。" },
-            { name: "NVIDIA (英伟达)", product: "AI 芯片", desc: "AI 时代的“卖水人”，算力霸主，市值突破三万亿美元。" }
+            { name: "OpenAI", product: "o3 / Operator", desc: "跨越 AGI 门槛！o3 系列彻底跑通了“慢思考”推理，新推出的 Operator (Agent) 正在重构所有白领与开发者的自动化工作流。" },
+            { name: "Anthropic", product: "Claude / MCP", desc: "企业级霸主！其发明的 MCP 协议已成为 AI 连接外部工具的全球事实标准，企业市场份额与营收正呈现几何级爆发。" },
+            { name: "NVIDIA (英伟达)", product: "AI 芯片 / 算力集群", desc: "AI 时代的“电力网”！不仅卖芯片，更通过组建超大规模数据中心构建算力基础设施，支撑全球 Agent 规模化落地。" }
           ].map((item, i) => (
             <div key={i} className="group bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-200 hover:shadow-blue-500/5 transition-all duration-300 flex flex-col hover:-translate-y-1">
               <div className="flex justify-between items-center mb-2">
