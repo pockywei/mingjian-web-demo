@@ -95,14 +95,14 @@ const slides = [
     id: 'hot-companies',
     title: "目前热点的 AI 公司与产品",
     component: () => (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-6xl mx-auto mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-6xl mx-auto mt-8 items-stretch">
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="space-y-6"
+          className="flex flex-col h-full space-y-6"
         >
-          <div className="flex items-center space-x-3 mb-8">
+          <div className="flex items-center space-x-3 mb-2">
             <Globe className="w-6 h-6 text-gray-400" />
             <h3 className="text-2xl font-medium text-gray-800">国际巨头：技术风向标</h3>
           </div>
@@ -111,12 +111,12 @@ const slides = [
             { name: "Anthropic", product: "Claude / MCP", desc: "企业级霸主！其发明的 MCP 协议已成为 AI 连接外部工具的全球事实标准，企业市场份额与营收正呈现几何级爆发。" },
             { name: "NVIDIA (英伟达)", product: "AI 芯片 / 算力集群", desc: "AI 时代的“电力网”！不仅卖芯片，更通过组建超大规模数据中心构建算力基础设施，支撑全球 Agent 规模化落地。" }
           ].map((item, i) => (
-            <div key={i} className="group bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-200 hover:shadow-blue-500/5 transition-all duration-300 flex flex-col hover:-translate-y-1">
+            <div key={i} className="group flex-1 bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-200 hover:shadow-blue-500/5 transition-all duration-300 flex flex-col hover:-translate-y-1">
               <div className="flex justify-between items-center mb-2">
                 <span className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{item.name}</span>
                 <span className="px-3 py-1 bg-gray-50 border border-gray-100 text-gray-600 group-hover:bg-blue-50 group-hover:text-blue-600 group-hover:border-blue-100 rounded-full text-xs font-medium transition-colors">{item.product}</span>
               </div>
-              <p className="text-sm text-gray-500 font-light">{item.desc}</p>
+              <p className="text-sm text-gray-500 font-light leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </motion.div>
@@ -125,9 +125,9 @@ const slides = [
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="space-y-6"
+          className="flex flex-col h-full space-y-6"
         >
-          <div className="flex items-center space-x-3 mb-8">
+          <div className="flex items-center space-x-3 mb-2">
             <Target className="w-6 h-6 text-gray-400" />
             <h3 className="text-2xl font-medium text-gray-800">国内力量：场景落地王</h3>
           </div>
@@ -136,12 +136,12 @@ const slides = [
             { name: "深度求索 (DeepSeek)", product: "DeepSeek-R1", desc: "打破算力霸权！算法优化极大降低了国产芯片的推理成本，确立了开源生态统治地位。" },
             { name: "月之暗面", product: "Kimi Agent", desc: "商业化核爆！全面押注 Agent 生态，API 调用收入单月破千万美金，B 端自动化成核心。" }
           ].map((item, i) => (
-            <div key={i} className="group bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-purple-200 hover:shadow-purple-500/5 transition-all duration-300 flex flex-col hover:-translate-y-1">
+            <div key={i} className="group flex-1 bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-purple-200 hover:shadow-purple-500/5 transition-all duration-300 flex flex-col hover:-translate-y-1">
               <div className="flex justify-between items-center mb-2">
                 <span className="text-lg font-bold text-gray-900 group-hover:text-purple-600 transition-colors">{item.name}</span>
                 <span className="px-3 py-1 bg-gray-50 border border-gray-100 text-gray-600 group-hover:bg-purple-50 group-hover:text-purple-600 group-hover:border-purple-100 rounded-full text-xs font-medium transition-colors">{item.product}</span>
               </div>
-              <p className="text-sm text-gray-500 font-light">{item.desc}</p>
+              <p className="text-sm text-gray-500 font-light leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </motion.div>
