@@ -1,0 +1,460 @@
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  ChevronRight, ChevronLeft, 
+  Sparkles, TrendingUp, Cpu, 
+  Briefcase, MessageSquare, LineChart, 
+  Globe, Zap, Target, Users,
+  MessageCircle, ArrowDown, ArrowUp, UserCheck, Star, Database, Wrench, Brain, Server
+} from 'lucide-react';
+
+const slides = [
+  {
+    id: 'intro',
+    component: () => (
+      <div className="flex flex-col items-center justify-center text-center space-y-8 max-w-4xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="inline-flex items-center space-x-2 bg-gray-100/80 px-4 py-2 rounded-full text-gray-600 text-sm tracking-wider font-medium"
+        >
+          <Sparkles className="w-4 h-4 text-gray-500" />
+          <span>民建会员内部交流分享</span>
+        </motion.div>
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-5xl md:text-7xl font-light tracking-tight text-gray-900 leading-tight"
+        >
+          拥抱 AI 时代 <br />
+          <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-500">
+            企业主的新质生产力
+          </span>
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-xl text-gray-500 max-w-2xl font-light leading-relaxed"
+        >
+          探索人工智能的最新进展，解析行业热点，<br/>为民建企业主在数字化浪潮中提供实战指南。
+        </motion.p>
+      </div>
+    )
+  },
+  {
+    id: 'current-state',
+    title: "AI 到底发展到了什么地步？",
+    component: () => (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mx-auto mt-12">
+        {[
+          {
+            icon: <Cpu className="w-8 h-8 text-gray-700" />,
+            title: "从“计算”到“生成”",
+            desc: "过去的AI只能做判断题（如人脸识别），现在的AI（Generative AI）能做解答题，自动生成文本、图像、代码甚至视频。"
+          },
+          {
+            icon: <Zap className="w-8 h-8 text-gray-700" />,
+            title: "多模态与逻辑推理",
+            desc: "不仅“看图说话”，更能理解复杂业务逻辑。GPT-4 等模型已具备超越普通人的专业考试水平（如律考、医考）。"
+          },
+          {
+            icon: <TrendingUp className="w-8 h-8 text-gray-700" />,
+            title: "AI 的“iPhone 时刻”",
+            desc: "门槛大幅降低。你不再需要懂编程，只需用自然语言（中文）下达指令，AI 就能成为你的 24 小时超级外脑。"
+          }
+        ].map((item, i) => (
+          <motion.div 
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: i * 0.2 }}
+            className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg shadow-gray-200/20 hover:shadow-xl transition-all duration-300"
+          >
+            <div className="bg-gray-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+              {item.icon}
+            </div>
+            <h3 className="text-2xl font-semibold text-gray-800 mb-4">{item.title}</h3>
+            <p className="text-gray-500 leading-relaxed font-light">{item.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    )
+  },
+  {
+    id: 'hot-companies',
+    title: "目前热点的 AI 公司与产品",
+    component: () => (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-6xl mx-auto mt-8">
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-6"
+        >
+          <div className="flex items-center space-x-3 mb-8">
+            <Globe className="w-6 h-6 text-gray-400" />
+            <h3 className="text-2xl font-medium text-gray-800">国际巨头：技术风向标</h3>
+          </div>
+          {[
+            { name: "OpenAI", product: "ChatGPT / Sora", desc: "行业绝对的领头羊，逻辑推理能力最强，Sora 更是颠覆了视频生成。" },
+            { name: "Anthropic", product: "Claude 3.5", desc: "文本处理极其细腻，编程能力出众，企业级安全性高。" },
+            { name: "NVIDIA (英伟达)", product: "AI 芯片", desc: "AI 时代的“卖水人”，算力霸主，市值突破三万亿美元。" }
+          ].map((item, i) => (
+            <div key={i} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-lg font-bold text-gray-900">{item.name}</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">{item.product}</span>
+              </div>
+              <p className="text-sm text-gray-500 font-light">{item.desc}</p>
+            </div>
+          ))}
+        </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="space-y-6"
+        >
+          <div className="flex items-center space-x-3 mb-8">
+            <Target className="w-6 h-6 text-gray-400" />
+            <h3 className="text-2xl font-medium text-gray-800">国内力量：场景落地王</h3>
+          </div>
+          {[
+            { name: "字节跳动", product: "豆包 / Trae", desc: "国内用户量最大的AI产品，生态丰富，Trae 为开发提效带来革命。" },
+            { name: "深度求索 (DeepSeek)", product: "DeepSeek-V3", desc: "国产开源之光，极致的性价比，模型能力直逼国际最顶尖水平。" },
+            { name: "月之暗面", product: "Kimi", desc: "主打超长文本处理，能一次性阅读百份财报和万字长文，备受白领喜爱。" }
+          ].map((item, i) => (
+            <div key={i} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-lg font-bold text-gray-900">{item.name}</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">{item.product}</span>
+              </div>
+              <p className="text-sm text-gray-500 font-light">{item.desc}</p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    )
+  },
+  {
+    id: 'architecture',
+    title: "AI 企业落地技术架构图",
+    component: () => (
+      <div className="w-full max-w-4xl mx-auto mt-4 flex flex-col items-center">
+        <p className="text-gray-500 mb-6 font-light">从基础设施到业务应用的全栈协同，建立全局观</p>
+        
+        <div className="w-full relative flex flex-col items-center gap-3">
+          
+          {/* 入口层 */}
+          <div className="flex w-full justify-center gap-8 z-10">
+            <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="w-1/3 bg-pink-50/80 border border-pink-100 text-pink-700 py-3 rounded-xl flex items-center justify-center shadow-sm backdrop-blur-sm font-medium">
+              <MessageCircle className="w-5 h-5 mr-2" /> 飞书
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="w-1/3 bg-green-50/80 border border-green-100 text-green-700 py-3 rounded-xl flex items-center justify-center shadow-sm backdrop-blur-sm font-medium">
+              <MessageCircle className="w-5 h-5 mr-2" /> 微信
+            </motion.div>
+          </div>
+
+          {/* 箭头 */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="flex justify-center w-full space-x-32 -my-1 text-gray-300">
+             <ArrowDown className="w-5 h-5" />
+             <ArrowDown className="w-5 h-5" />
+          </motion.div>
+
+          {/* 系统层 */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="w-full bg-red-50/80 border border-red-100 text-red-700 p-4 rounded-2xl shadow-sm flex flex-col items-center backdrop-blur-sm z-10">
+            <h4 className="font-semibold text-lg mb-1">小龙虾 (OpenClaw) 系统</h4>
+            <p className="text-xs text-red-500/80 font-light">豪华办公室 | 统一工位 | 权限管理 | 产出追踪</p>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="text-gray-300 -my-1"><ArrowUp className="w-5 h-5" /></motion.div>
+
+          {/* 核心应用层 */}
+          <div className="w-full relative flex justify-center z-10">
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.6 }} className="w-3/4 bg-purple-50/80 border border-purple-100 text-purple-700 p-5 rounded-2xl shadow-md flex flex-col items-center backdrop-blur-sm relative">
+              <h4 className="font-semibold text-xl mb-1 flex items-center"><UserCheck className="w-5 h-5 mr-2"/> Agent 智能体（超级员工）</h4>
+              <p className="text-sm text-purple-500/80 font-light">融合大脑 + 知识 + 工具的全能数字员工</p>
+              
+              {/* 业务价值侧边栏 */}
+              <div className="absolute -right-6 top-1/2 -translate-y-1/2 translate-x-full w-40 bg-amber-50/90 border border-amber-100 rounded-xl p-4 shadow-lg hidden lg:block backdrop-blur-md">
+                 <h5 className="font-semibold text-amber-700 text-sm mb-2 flex items-center"><Star className="w-4 h-4 mr-1"/> 业务价值</h5>
+                 <ul className="text-xs text-amber-600/80 space-y-1.5 font-light">
+                   <li>• 24小时待命</li>
+                   <li>• 无需社保</li>
+                   <li>• 永不抱怨</li>
+                   <li>• 成本极低</li>
+                 </ul>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="flex w-2/3 justify-between px-12 -my-1 z-0">
+             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }} className="text-gray-300 transform rotate-45 translate-x-4"><ArrowUp className="w-5 h-5" /></motion.div>
+             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }} className="text-gray-300 transform -rotate-45 -translate-x-4"><ArrowUp className="w-5 h-5" /></motion.div>
+          </div>
+
+          {/* 中间层 */}
+          <div className="flex w-full justify-center gap-6 z-10">
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }} className="w-1/2 bg-teal-50/80 border border-teal-100 text-teal-700 p-5 rounded-2xl shadow-sm flex flex-col items-center backdrop-blur-sm">
+              <h4 className="font-semibold text-lg mb-1 flex items-center"><Database className="w-5 h-5 mr-2"/>知识库 RAG</h4>
+              <p className="text-xs text-teal-600/80 font-light">(公司规章、报价单) + 外挂硬盘</p>
+            </motion.div>
+            
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }} className="w-1/2 bg-orange-50/80 border border-orange-100 text-orange-700 p-5 rounded-2xl shadow-sm flex flex-col items-center backdrop-blur-sm">
+              <h4 className="font-semibold text-lg mb-1 flex items-center"><Wrench className="w-5 h-5 mr-2"/>Skills / 工具</h4>
+              <p className="text-xs text-orange-600/80 font-light">ERP系统 | 邮件收发 | 上网检索</p>
+            </motion.div>
+          </div>
+
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="text-gray-300 -my-1"><ArrowUp className="w-5 h-5" /></motion.div>
+
+          {/* 大脑层 */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="w-full bg-blue-50/80 border border-blue-100 text-blue-700 p-5 rounded-2xl shadow-sm flex flex-col items-center backdrop-blur-sm z-10">
+            <h4 className="font-semibold text-lg flex items-center"><Brain className="w-5 h-5 mr-2"/> 大脑层 | 大模型 (最聪明的脑子)</h4>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-gray-300 -my-1"><ArrowUp className="w-5 h-5" /></motion.div>
+
+          {/* 基础设施层 */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0 }} className="w-full bg-indigo-900/90 border border-indigo-800 text-white p-5 rounded-2xl shadow-md flex flex-col items-center backdrop-blur-sm z-10">
+            <h4 className="font-semibold text-lg flex items-center"><Server className="w-5 h-5 mr-2"/> 基础设施层 | GPU算力 + Token成本 (每日仅需几块钱)</h4>
+          </motion.div>
+          
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 'comic-explanation',
+    title: "一图看懂：招聘数字员工的全流程",
+    component: () => (
+      <div className="w-full max-w-5xl mx-auto mt-4 flex flex-col items-center justify-center">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-gray-200/60 bg-white"
+        >
+          {/* 装饰边框 */}
+          <div className="absolute inset-0 border-4 border-white/40 pointer-events-none rounded-2xl z-10"></div>
+          
+          <img 
+            src="/comic.png" 
+            alt="招聘数字员工全流程漫画" 
+            className="w-full h-auto object-contain block"
+          />
+          
+          {/* 底部渐变说明区 */}
+          <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-gray-900/90 via-gray-900/60 to-transparent p-6 pt-12 text-white">
+             <p className="text-sm font-light text-gray-200 text-center tracking-wide">
+               将技术架构转化为通俗易懂的“招聘逻辑”：找脑子 → 教规矩 → 配工具 → 安排工位
+             </p>
+          </div>
+        </motion.div>
+      </div>
+    )
+  },
+  {
+    id: 'business-cases',
+    title: "民建企业主实战案例",
+    component: () => (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mx-auto mt-12">
+        {[
+          {
+            icon: <Briefcase className="w-6 h-6 text-gray-700" />,
+            tag: "降本增效",
+            title: "营销内容工业化",
+            scenario: "一家传统制造业企业，过去每年花费几十万请外包做品牌宣传。",
+            aiAction: "现在使用 AI 生成公众号推文、产品海报和短视频脚本。1个实习生 + AI工具 = 过去一个营销团队的产出。"
+          },
+          {
+            icon: <MessageSquare className="w-6 h-6 text-gray-700" />,
+            tag: "体验升级",
+            title: "7x24 智能销售客服",
+            scenario: "外贸企业时差问题导致线索流失，传统客服只会机械回复。",
+            aiAction: "接入大模型打造“数字员工”。它能理解客户情绪，用多国语言进行多轮专业产品推介，转化率提升 30%。"
+          },
+          {
+            icon: <LineChart className="w-6 h-6 text-gray-700" />,
+            tag: "决策辅助",
+            title: "高管数据与文档分析",
+            scenario: "面临海量行业研报和复杂的财务报表，老板没时间细看。",
+            aiAction: "把几十页PDF丢给 Kimi 或豆包，10秒内提取核心竞争优劣势、财务健康度，并直接生成一页纸的高管摘要。"
+          }
+        ].map((item, i) => (
+          <motion.div 
+            key={i}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: i * 0.2 }}
+            className="group relative bg-white rounded-3xl p-8 border border-gray-100 shadow-md hover:shadow-xl transition-all duration-300"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div className="bg-gray-50 p-3 rounded-xl">{item.icon}</div>
+              <span className="text-xs font-semibold px-3 py-1 bg-gray-100 text-gray-600 rounded-full">{item.tag}</span>
+            </div>
+            <h3 className="text-xl font-bold text-gray-800 mb-4">{item.title}</h3>
+            <div className="space-y-4">
+              <div>
+                <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-1">痛点场景</p>
+                <p className="text-sm text-gray-600 font-light">{item.scenario}</p>
+              </div>
+              <div className="h-px w-full bg-gray-100"></div>
+              <div>
+                <p className="text-xs text-gray-800 uppercase tracking-wider font-semibold mb-1">AI 破局</p>
+                <p className="text-sm text-gray-800 font-medium leading-relaxed">{item.aiAction}</p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    )
+  },
+  {
+    id: 'conclusion',
+    component: () => (
+      <div className="flex flex-col items-center justify-center text-center space-y-10 max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Users className="w-16 h-16 text-gray-300 mx-auto mb-6" />
+          <h2 className="text-4xl md:text-5xl font-light tracking-tight text-gray-900 mb-6">
+            AI 不会淘汰企业，<br/>
+            <span className="font-semibold">但会淘汰不会用 AI 的企业。</span>
+          </h2>
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light leading-relaxed mb-10">
+            建议各位企业主：先给团队开通几个 AI 会员，从简单的写周报、写文案开始，培养组织的 AI 意识。小步快跑，拥抱变化。
+          </p>
+        </motion.div>
+        
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="inline-flex items-center space-x-2 text-gray-400"
+        >
+          <span className="text-sm tracking-widest uppercase">Q & A / 交流环节</span>
+        </motion.div>
+      </div>
+    )
+  }
+];
+
+function App() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = () => {
+    if (currentSlide < slides.length - 1) {
+      setCurrentSlide(prev => prev + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (currentSlide > 0) {
+      setCurrentSlide(prev => prev - 1);
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentSlide]);
+
+  const CurrentComponent = slides[currentSlide].component;
+
+  return (
+    <div className="min-h-screen w-full bg-[#fafafa] flex flex-col items-center justify-center relative overflow-hidden font-sans selection:bg-gray-200">
+      
+      {/* 顶部进度条 */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gray-100">
+        <motion.div 
+          className="h-full bg-gray-400"
+          initial={{ width: 0 }}
+          animate={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
+          transition={{ duration: 0.5 }}
+        />
+      </div>
+
+      {/* 装饰性背景 */}
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-gradient-to-br from-gray-200/40 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-gradient-to-tl from-gray-200/40 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+      {/* 头部标题 (除首页和尾页) */}
+      <AnimatePresence mode="wait">
+        {slides[currentSlide].title && (
+          <motion.div 
+            key={`title-${currentSlide}`}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-12 md:top-20 w-full text-center px-6"
+          >
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 tracking-tight">
+              {slides[currentSlide].title}
+            </h2>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 主内容区 */}
+      <main className="w-full px-6 py-24 flex-1 flex items-center justify-center z-10">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="w-full"
+          >
+            <CurrentComponent />
+          </motion.div>
+        </AnimatePresence>
+      </main>
+
+      {/* 底部导航控件 */}
+      <div className="absolute bottom-8 w-full px-12 flex justify-between items-center z-20">
+        <div className="text-sm font-medium text-gray-400 tracking-widest">
+          {String(currentSlide + 1).padStart(2, '0')} <span className="text-gray-300 mx-1">/</span> {String(slides.length).padStart(2, '0')}
+        </div>
+        
+        <div className="flex space-x-4">
+          <button 
+            onClick={prevSlide}
+            disabled={currentSlide === 0}
+            className={`p-3 rounded-full transition-all duration-300 backdrop-blur-sm ${
+              currentSlide === 0 
+                ? 'bg-gray-100/50 text-gray-300 cursor-not-allowed' 
+                : 'bg-white text-gray-600 shadow-sm hover:shadow-md border border-gray-100 hover:scale-105'
+            }`}
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button 
+            onClick={nextSlide}
+            disabled={currentSlide === slides.length - 1}
+            className={`p-3 rounded-full transition-all duration-300 backdrop-blur-sm ${
+              currentSlide === slides.length - 1 
+                ? 'bg-gray-100/50 text-gray-300 cursor-not-allowed' 
+                : 'bg-gray-900 text-white shadow-md hover:shadow-lg hover:scale-105'
+            }`}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
