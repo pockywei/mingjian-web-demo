@@ -18,21 +18,28 @@ const slides = [
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="inline-flex items-center space-x-2 bg-gray-100/80 px-4 py-2 rounded-full text-gray-600 text-sm tracking-wider font-medium"
+          className="inline-flex items-center space-x-2 bg-indigo-50/80 border border-indigo-100/50 px-4 py-2 rounded-full text-indigo-600 text-sm tracking-wider font-medium shadow-sm"
         >
-          <Sparkles className="w-4 h-4 text-gray-500" />
+          <Sparkles className="w-4 h-4 text-indigo-500" />
           <span>民建会员内部交流分享</span>
         </motion.div>
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl font-light tracking-tight text-gray-900 leading-tight"
+          className="text-5xl md:text-7xl font-light tracking-tight text-gray-900 leading-tight relative"
         >
           拥抱 AI 时代 <br />
-          <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-500">
+          <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600">
             企业主的新质生产力
           </span>
+          <motion.div 
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute -top-12 -right-16 text-purple-200/40 pointer-events-none z-[-1]"
+          >
+            <Sparkles className="w-32 h-32" />
+          </motion.div>
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
@@ -72,9 +79,9 @@ const slides = [
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: i * 0.2 }}
-            className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg shadow-gray-200/20 hover:shadow-xl transition-all duration-300"
+            className="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-100 shadow-lg shadow-gray-200/20 hover:shadow-2xl hover:shadow-indigo-500/10 hover:border-indigo-200 transition-all duration-500 hover:-translate-y-1"
           >
-            <div className="bg-gray-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 group-hover:from-indigo-50 group-hover:to-purple-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-500">
               {item.icon}
             </div>
             <h3 className="text-2xl font-semibold text-gray-800 mb-4">{item.title}</h3>
@@ -104,10 +111,10 @@ const slides = [
             { name: "Anthropic", product: "Claude 3.5", desc: "文本处理极其细腻，编程能力出众，企业级安全性高。" },
             { name: "NVIDIA (英伟达)", product: "AI 芯片", desc: "AI 时代的“卖水人”，算力霸主，市值突破三万亿美元。" }
           ].map((item, i) => (
-            <div key={i} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col">
+            <div key={i} className="group bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-200 hover:shadow-blue-500/5 transition-all duration-300 flex flex-col hover:-translate-y-1">
               <div className="flex justify-between items-center mb-2">
-                <span className="text-lg font-bold text-gray-900">{item.name}</span>
-                <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">{item.product}</span>
+                <span className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{item.name}</span>
+                <span className="px-3 py-1 bg-gray-50 border border-gray-100 text-gray-600 group-hover:bg-blue-50 group-hover:text-blue-600 group-hover:border-blue-100 rounded-full text-xs font-medium transition-colors">{item.product}</span>
               </div>
               <p className="text-sm text-gray-500 font-light">{item.desc}</p>
             </div>
@@ -129,10 +136,10 @@ const slides = [
             { name: "深度求索 (DeepSeek)", product: "DeepSeek-V3", desc: "国产开源之光，极致的性价比，模型能力直逼国际最顶尖水平。" },
             { name: "月之暗面", product: "Kimi", desc: "主打超长文本处理，能一次性阅读百份财报和万字长文，备受白领喜爱。" }
           ].map((item, i) => (
-            <div key={i} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col">
+            <div key={i} className="group bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-purple-200 hover:shadow-purple-500/5 transition-all duration-300 flex flex-col hover:-translate-y-1">
               <div className="flex justify-between items-center mb-2">
-                <span className="text-lg font-bold text-gray-900">{item.name}</span>
-                <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">{item.product}</span>
+                <span className="text-lg font-bold text-gray-900 group-hover:text-purple-600 transition-colors">{item.name}</span>
+                <span className="px-3 py-1 bg-gray-50 border border-gray-100 text-gray-600 group-hover:bg-purple-50 group-hover:text-purple-600 group-hover:border-purple-100 rounded-full text-xs font-medium transition-colors">{item.product}</span>
               </div>
               <p className="text-sm text-gray-500 font-light">{item.desc}</p>
             </div>
@@ -386,9 +393,25 @@ function App() {
         />
       </div>
 
-      {/* 装饰性背景 */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-gradient-to-br from-gray-200/40 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-gradient-to-tl from-gray-200/40 to-transparent rounded-full blur-3xl pointer-events-none" />
+      {/* 科技感点阵背景 */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMCwwLDAsMC4wNCkiLz48L3N2Zz4=')] pointer-events-none z-0"></div>
+
+      {/* AI 风格全息呼吸光晕 */}
+      <motion.div 
+        animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-gradient-to-br from-indigo-400/20 via-purple-400/20 to-transparent rounded-full blur-3xl pointer-events-none z-0" 
+      />
+      <motion.div 
+        animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-gradient-to-tl from-blue-400/20 via-cyan-400/20 to-transparent rounded-full blur-3xl pointer-events-none z-0" 
+      />
+      <motion.div 
+        animate={{ y: [0, -40, 0], opacity: [0.1, 0.3, 0.1] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[20%] left-[30%] w-[40%] h-[40%] bg-gradient-to-tr from-fuchsia-400/10 to-transparent rounded-full blur-3xl pointer-events-none z-0" 
+      />
 
       {/* 头部标题 (除首页和尾页) */}
       <AnimatePresence mode="wait">
