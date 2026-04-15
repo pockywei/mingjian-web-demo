@@ -253,7 +253,7 @@ const slides = [
           <img 
             src={comicImg} 
             alt="招聘数字员工全流程漫画" 
-            className="w-full h-auto object-contain block"
+            className="w-full max-h-[65vh] object-contain block bg-[#fdfdfd]"
           />
           
           {/* 底部渐变说明区 */}
