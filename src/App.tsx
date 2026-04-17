@@ -6,7 +6,7 @@ import {
   Sparkles, TrendingUp, Cpu, 
   Briefcase, MessageSquare, LineChart, 
   Globe, Zap, Target, Users,
-  MessageCircle, ArrowDown, ArrowUp, UserCheck, Star, Database, Wrench, Brain, Server
+  MessageCircle, ArrowDown, ArrowUp, UserCheck, Star, Database, Wrench, Brain, Server, Download
 } from 'lucide-react';
 
 const slides = [
@@ -356,6 +356,8 @@ const slides = [
 
 function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPrinting, setIsPrinting] = useState(false);
+  const [isPreparing, setIsPreparing] = useState(false);
 
   const nextSlide = () => {
     if (currentSlide < slides.length - 1) {
@@ -369,20 +371,92 @@ function App() {
     }
   };
 
+  const handleExportPDF = () => {
+    setIsPrinting(true);
+    setIsPreparing(true);
+    // 等待所有页面的 Framer Motion 动画渲染完成 (预留 1.5s 缓冲)
+    setTimeout(() => {
+      setIsPreparing(false);
+      window.print();
+    }, 1500);
+  };
+
+  useEffect(() => {
+    const handleAfterPrint = () => {
+      setIsPrinting(false);
+    };
+    window.addEventListener('afterprint', handleAfterPrint);
+    return () => window.removeEventListener('afterprint', handleAfterPrint);
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (isPrinting) return;
       if (e.key === 'ArrowRight' || e.key === 'Space') nextSlide();
       if (e.key === 'ArrowLeft') prevSlide();
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentSlide]);
+  }, [currentSlide, isPrinting]);
+
+  if (isPrinting) {
+    return (
+      <div className="min-h-screen w-full bg-[#fafafa] font-sans">
+        {isPreparing && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm print-hidden">
+            <div className="flex flex-col items-center space-y-4">
+              <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+              <p className="text-indigo-600 font-medium tracking-widest">正在渲染高质量 PDF 页面...</p>
+            </div>
+          </div>
+        )}
+        
+        {slides.map((slide, index) => {
+          const CurrentComponent = slide.component;
+          return (
+            <div key={index} className="w-full h-screen flex flex-col items-center justify-center relative overflow-hidden" style={{ pageBreakAfter: 'always', breakAfter: 'page' }}>
+              {/* 背景 */}
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMCwwLDAsMC4wNCkiLz48L3N2Zz4=')] pointer-events-none z-0"></div>
+              <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-gradient-to-br from-indigo-400/20 via-purple-400/20 to-transparent rounded-full blur-3xl pointer-events-none z-0" />
+              <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-gradient-to-tl from-blue-400/20 via-cyan-400/20 to-transparent rounded-full blur-3xl pointer-events-none z-0" />
+              
+              {/* 标题 */}
+              {slide.title && (
+                <div className="absolute top-12 md:top-20 w-full text-center px-6 z-10">
+                  <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 tracking-tight">
+                    {slide.title}
+                  </h2>
+                </div>
+              )}
+              
+              {/* 主内容 */}
+              <main className="w-full px-6 py-24 flex-1 flex items-center justify-center z-10">
+                <CurrentComponent />
+              </main>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
 
   const CurrentComponent = slides[currentSlide].component;
 
   return (
     <div className="min-h-screen w-full bg-[#fafafa] flex flex-col items-center justify-center relative overflow-hidden font-sans selection:bg-gray-200">
       
+      {/* 导出 PDF 按钮 */}
+      <button 
+        onClick={handleExportPDF}
+        className="absolute top-8 right-8 z-50 flex items-center justify-center bg-white/60 hover:bg-white backdrop-blur-md border border-gray-200/50 text-gray-500 hover:text-indigo-600 px-3 py-2 rounded-full shadow-sm hover:shadow-md transition-all duration-300 group"
+        title="导出成 PDF"
+      >
+        <Download className="w-4 h-4" />
+        <span className="text-sm font-medium opacity-0 max-w-0 group-hover:opacity-100 group-hover:max-w-xs group-hover:ml-2 transition-all duration-300 overflow-hidden whitespace-nowrap">
+          导出 PDF
+        </span>
+      </button>
+
       {/* 顶部进度条 */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gray-100">
         <motion.div 
