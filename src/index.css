@@ -28,10 +28,22 @@
     margin: 0;
   }
   
-  body {
+  html, body {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     background-color: #fafafa !important;
+  }
+
+  /* 禁用所有的过渡和动画 */
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .print-hidden {
