@@ -416,7 +416,7 @@ function App() {
           {slides.map((slide, index) => {
             const CurrentComponent = slide.component;
             return (
-              <div key={index} className="w-full h-screen flex flex-col items-center justify-center relative overflow-hidden bg-[#fafafa]" style={{ pageBreakAfter: 'always', breakAfter: 'page' }}>
+              <div key={index} className="print-page w-full h-screen flex flex-col items-center justify-center relative bg-[#fafafa]">
                 {/* 背景 */}
                 <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMCwwLDAsMC4wNCkiLz48L3N2Zz4=')] pointer-events-none z-0"></div>
                 <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-gradient-to-br from-indigo-400/20 via-purple-400/20 to-transparent rounded-full blur-3xl pointer-events-none z-0" />
@@ -424,15 +424,15 @@ function App() {
                 
                 {/* 标题 */}
                 {slide.title && (
-                  <div className="absolute top-12 md:top-20 w-full text-center px-6 z-10">
-                    <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 tracking-tight" style={{ opacity: 1, transform: 'none' }}>
+                  <div className="absolute top-12 md:top-20 w-full text-center px-6 z-10 print-force-visible">
+                    <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 tracking-tight">
                       {slide.title}
                     </h2>
                   </div>
                 )}
                 
                 {/* 主内容 */}
-                <main className="w-full px-6 py-24 flex-1 flex items-center justify-center z-10" style={{ opacity: 1, transform: 'none' }}>
+                <main className="w-full px-6 py-24 flex-1 flex items-center justify-center z-10 print-force-visible">
                   <CurrentComponent />
                 </main>
               </div>

@@ -38,15 +38,30 @@
     background-color: #fafafa !important;
   }
 
-  /* 禁用所有的过渡和动画 */
+  /* 禁用所有的过渡和动画，强制透明度和变换为初始可见状态 */
   *, *::before, *::after {
     transition: none !important;
     animation: none !important;
+  }
+
+  /* 强制覆盖 Framer Motion 在打印模式下可能残留的内联样式 */
+  .print-force-visible {
     opacity: 1 !important;
     transform: none !important;
+    visibility: visible !important;
   }
 
   .print-hidden {
     display: none !important;
+  }
+
+  /* 确保每一页都能独立撑满 A4 纸并且不被截断 */
+  .print-page {
+    page-break-after: always;
+    break-after: page;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+    position: relative !important;
   }
 }
