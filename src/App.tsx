@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import comicImg from './assets/comic.png';
+import skillImg from './assets/openclaw1.jpeg';
 import { 
   ChevronRight, ChevronLeft, 
   Sparkles, TrendingUp, Cpu, 
@@ -153,10 +154,41 @@ const slides = [
     id: 'architecture',
     title: "AI 企业落地技术架构图",
     component: () => (
-      <div className="w-full max-w-4xl mx-auto mt-16 flex flex-col items-center">
-        <p className="text-gray-500 mb-10 font-light tracking-wide">从基础设施到业务应用的全栈协同，建立全局观</p>
+      <div className="w-full max-w-[90rem] mx-auto mt-12 flex flex-col items-center">
+        <p className="text-gray-500 mb-8 font-light tracking-wide text-lg">从基础设施到业务应用的全栈协同，建立全局观</p>
         
-        <div className="w-full relative flex flex-col items-center gap-3">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 px-8">
+          
+          {/* 左侧：业务流转示例图 */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="w-full lg:w-[45%] flex justify-center"
+          >
+            <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl shadow-indigo-500/10 border border-gray-200/60 bg-white group hover:shadow-indigo-500/20 hover:border-indigo-200 transition-all duration-500">
+              <div className="absolute inset-0 border-4 border-white/40 pointer-events-none rounded-2xl z-10"></div>
+              <img 
+                src={skillImg} 
+                alt="自动化流程示例" 
+                className="w-full max-h-[60vh] object-contain block bg-[#fdfdfd]"
+              />
+              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent p-5 pt-10 text-white">
+                 <p className="text-sm font-light text-gray-200 text-center tracking-wide">
+                   业务流转示例：从通信入口指令到智能调度，实现自动化生成与分析
+                 </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* 右侧：技术架构分层 */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full lg:w-[55%] relative flex flex-col items-center gap-3 transform lg:scale-[0.9] xl:scale-100 origin-center"
+          >
+            <div className="w-full relative flex flex-col items-center gap-3">
           
           {/* 入口层 */}
           <div className="flex w-full justify-center gap-8 z-10">
@@ -233,6 +265,8 @@ const slides = [
             <h4 className="font-semibold text-lg flex items-center"><Server className="w-5 h-5 mr-2"/> 基础设施层 | GPU算力 + Token成本 (每日仅需几块钱)</h4>
           </motion.div>
           
+        </div>
+          </motion.div>
         </div>
       </div>
     )
